@@ -10,6 +10,8 @@ Export screenshots **without** a device frame: the site draws the thin bezel its
 device around it. Capture on light appearance unless noted, and keep franchise logos and art out
 of every frame (see the app repository's `Reference/APP-STORE.md`).
 
+## Home page (`/`)
+
 | Filename | Section | Device | Orientation | Size (px) / ratio | What to capture | Treatment |
 |---|---|---|---|---|---|---|
 | `hero-ipad-atelier` | Hero | iPad | Landscape | 2752 × 2064 (4:3) | The Atelier with a box set open, tiles in several states, and a timer running. | Full-device |
@@ -25,49 +27,37 @@ of every frame (see the app repository's `Reference/APP-STORE.md`).
 
 ## Features page (`/features/`)
 
-Every name starts with `features-`. The same rules apply: frameless exports, no franchise logos or
-art, real figures only. These are a design pass too: when the real shots arrive, re-crop and re-scale
-them around the UI that matters, and add callouts (a box name, "12 models", a faction) only once
-they can sit on real UI.
+Five images, all small, all cropped UI with no device around them. They are evidence, not structure:
+the page reads in full without them. Every name starts with `features-`. A real screenshot may justify
+a different crop, so treat these as a design pass: re-crop and re-size around the UI that matters.
 
-| Filename | Section | Device | Orientation | Size (px) / ratio | What to capture | Treatment |
+| Filename | Section | Device | Crop type | Size (px) / ratio | Exact app screen | What must stay visible |
 |---|---|---|---|---|---|---|
-| `features-intro-atelier` | Intro | iPad | Landscape | 2752 × 1376 (2:1) | The Atelier, wide: a box set with several units, tiles in different states. The one big picture at the top of the page. | Cropped UI, full width |
-| `features-collection-ipad` | Collection | iPad | Landscape | 3:2 (e.g. 2752 × 1835) | The Collection tab: the list of box sets with their progress bars. | Cropped UI |
-| `features-collection-boxset` | Collection | iPhone | Portrait crop | 4:5 (1320 × 1650) | One box set's page, or the Catalog product page with **Start building**. Overlaps the iPad crop. | Cropped UI |
-| `features-atelier-wide` | Atelier | iPad | Landscape | 2752 × 1500 | The Atelier tile grid with rings in different states (not started, assembling, assembled, painting, painted). The largest image on the page. | Cropped UI, full width |
-| `features-assembly-model` | Assembly | iPhone | Portrait | 1320 × 2868 | A model's screen before starting, with **Start assembly**. | Full-device |
-| `features-assembly-session` | Assembly | iPhone | Landscape crop | 4:3 (1320 × 990) | The session area while running: the clock, Pause, Stop, Finish. | Cropped UI |
-| `features-assembly-done` | Assembly | iPhone | Landscape crop | 4:3 (1320 × 990) | The same model after assembly: its ring and status ("Assembled · ready for painting"). | Cropped UI |
-| `features-painting-select` | Painting | iPhone | Portrait | 1320 × 2868 | Batch Paint mode with several models selected and **Start Painting (N)**. | Full-device |
-| `features-painting-session` | Painting | iPhone | Portrait | 1320 × 2868 | The batch screen with the shared session running. | Full-device |
-| `features-painting-tiles` | Painting | iPad | Landscape crop | 3:2 (e.g. 1600 × 1067) | A close crop of a unit's tiles with several selected (the selected outline). Hidden on phones. | Cropped UI |
-| `features-journal-photo` | Journal | Photograph | Landscape | 3:2 (1800 × 1200) | A real photo of a model, ideally half-painted. | Photo |
-| `features-journal-entry` | Journal | iPhone | Portrait | 1320 × 2868 | A journal entry: the note, its photos and the stage. | Full-device |
-| `features-paints-ipad` | Paints | iPad | Landscape | 16:10 (2752 × 1720) | The Paints tab on a wide iPad: the swatch grid with a paint open beside it and **Similar paints** visible. Bleeds off the right edge, so the right side may be cut. | Cropped UI, bleeds off the right edge |
-| `features-paints-model` | Paints | iPhone | Portrait crop | 4:5 (1320 × 1650) | A model's screen scrolled to its **Paints** section. | Cropped UI |
-| `features-progress-boxes` | Progress | iPad | Landscape | 4:3 (2752 × 2064) | Collection, Boxes view: the summary ring, status bars and time totals. | Cropped UI |
-| `features-progress-factions` | Progress | iPhone | Portrait crop | 4:5 (1320 × 1650) | Collection, Factions view. | Cropped UI |
-| `features-island-crop` | On iPhone | iPhone | Wide crop | 22:7 (1320 × 420) | The Dynamic Island with a timer running. | Cropped UI |
-| `features-lockscreen-crop` | On iPhone | iPhone | Portrait crop | 33:40 (1320 × 1600) | The Lock Screen with the running timer's Live Activity. | Cropped UI |
+| `features-collection-crop` | Collection (and Progress) | iPhone | Portrait crop | 1320 × 1650 (4:5) | The Collection tab, **Boxes** view, with a few box sets owned. | The **Boxes \| Factions** control, the summary and the status-bar legend, and at least two box cards with their progress bars. Crop out the status bar and the tab bar. |
+| `features-atelier-wide` | Atelier | iPad | Wide horizontal band | 2752 × 920 (3:1) | The Atelier on iPad with one box set open, ideally while a timer runs. | One unit header (faction tint, name, progress, time) and a row of tiles with rings in at least three states, including the running tile. The **Session** row at the top if it fits. |
+| `features-tracking-session` | Tracking | iPhone | Landscape crop | 1320 × 990 (4:3) | The batch screen of a painting batch with the session running (title like "×6", stage "Painting · Running"). | The clock, the stage line, and the Pause, Stop and Finish buttons. The first member rows may show underneath. |
+| `features-paints-crop` | Paints (and Journal) | iPad | Portrait crop | 1320 × 1650 (4:5) | The Paints tab on a wide iPad with a paint open: its detail with **Used on** and **Similar paints**. | The swatches, brand and range names, and the closeness labels in the Similar paints list. The colors in the UI are the section's only color. |
+| `features-lockscreen-crop` | On iPhone | iPhone | Portrait crop | 1320 × 1600 (33:40) | The iPhone Lock Screen with the running timer's Live Activity. | The whole Live Activity card: stage badge, title, the clock and the two round buttons. Some of the Lock Screen's own clock above it for context. |
 
-The two example figures under "Progress" (`18 painted`, `42h 15m`) are typographic excerpts set
-in the page. Replace them with numbers taken from `features-progress-boxes` and
-`features-progress-factions` and remove the "Example values" line.
+Journal and Progress have no image of their own: Journal reads with `features-paints-crop` and the
+home page's journal shots, and Progress with `features-collection-crop`. Add a sixth only if a real
+screenshot makes a point the text can't.
 
 ## What phones crop
 
-On a phone the page cannot show everything at a readable size, so two images are cropped by
+On a phone the page cannot show everything at a readable size, so some images are cropped by
 the page (`object-fit: cover`), not by you. Keep the important content inside the part that stays:
 
-- `journey-atelier-crop`, `features-intro-atelier` and `features-atelier-wide` show as 5:4 and keep the **left** side of the strip.
+- `journey-atelier-crop` shows as 5:4 and keeps the **left** side of the strip.
 - `paints-ipad-detail` shows as 4:3 and keeps the **top** and the horizontal centre.
+- `features-atelier-wide` shows as 16:10 and keeps the **left** side of the band.
+- `features-collection-crop`, `features-paints-crop` and `features-lockscreen-crop` show as 3:2 on phones and keep the **top** of the image, so put the key UI in the upper part of each crop.
 
 ## The example figure
 
-"Progress" shows `42h 15m` in Oxanium with a note saying it is an example. When the real
+"Progress" on the home page shows `42h 15m` in Oxanium with a note saying it is an example. When the real
 `progress-ipad-collection` screenshot is in, replace the figure and its label with a number
-taken from that screenshot, and delete the "Example value" line.
+taken from that screenshot, and delete the "Example value" line. The Features page shows no figures.
 
 ## Swapping a placeholder
 
