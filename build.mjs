@@ -19,6 +19,15 @@ const pages = [
     source: { html: "src/home.html" },
   },
   {
+    out: "features/index.html",
+    path: "/features/",
+    title: "Features | SpruLight",
+    description:
+      "How SpruLight fits into the miniature hobby: your collection, the Atelier, timed assembly and painting, a journal, paints and progress, on iPad and iPhone.",
+    source: { html: "src/features.html" },
+    nav: "navFeatures",
+  },
+  {
     out: "privacy/index.html",
     path: "/privacy/",
     title: "Privacy policy | SpruLight",
@@ -152,6 +161,7 @@ for (const page of pages) {
     url,
     canonicalTag: page.noindex ? "" : `<link rel="canonical" href="${url}">\n`,
     robotsTag: page.noindex ? `<meta name="robots" content="noindex">\n` : "",
+    navFeatures: page.nav === "navFeatures" ? ' aria-current="page"' : "",
     navSupport: page.nav === "navSupport" ? ' aria-current="page"' : "",
     navPrivacy: page.nav === "navPrivacy" ? ' aria-current="page"' : "",
     content,

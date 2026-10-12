@@ -9,8 +9,8 @@ Plain HTML and CSS: no JavaScript, no analytics, no cookies, no third-party requ
 |---|---|
 | `docs/` | The published site (GitHub Pages serves this folder). Pages are generated; `assets/`, `CNAME`, `.nojekyll`, `robots.txt` and `favicon.ico` are edited by hand. |
 | `src/layout.html` | The shared `<head>`, header and footer. |
-| `src/home.html`, `src/not-found.html` | The home page and the 404 page content. |
-| `build.mjs` | Builds `docs/index.html`, `docs/privacy/`, `docs/support/`, `docs/404.html` and `docs/sitemap.xml`. |
+| `src/home.html`, `src/features.html`, `src/not-found.html` | The home page, the guided Features walkthrough and the 404 page content. |
+| `build.mjs` | Builds `docs/index.html`, `docs/features/`, `docs/privacy/`, `docs/support/`, `docs/404.html` and `docs/sitemap.xml`. A new page is one entry in its `pages` list. |
 | `tools/check.mjs` | Checks links, asset paths, third-party hosts, metadata and contrast. Plain links to `docs.github.com` are allowed (the privacy policy links GitHub's statement); anything the page would load from another host fails. |
 | `tools/make-images.swift` | Regenerates the icons and the social preview image from the app icon. |
 | `SCREENSHOTS.md` | The screenshot inventory: every placeholder on the home page, what to capture, sizes and how to swap it in. Not published. |
