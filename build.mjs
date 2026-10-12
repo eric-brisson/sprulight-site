@@ -23,7 +23,7 @@ const pages = [
     path: "/privacy/",
     title: "Privacy policy | SpruLight",
     description:
-      "SpruLight doesn't collect any data. Everything you enter stays on your device.",
+      "SpruLight doesn't collect or transmit your personal data to the developer. Everything you enter is stored locally on your device.",
     source: { markdown: "Reference/privacy-policy.md" },
     nav: "navPrivacy",
   },
