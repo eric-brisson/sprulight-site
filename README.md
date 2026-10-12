@@ -13,6 +13,7 @@ Plain HTML and CSS: no JavaScript, no analytics, no cookies, no third-party requ
 | `build.mjs` | Builds `docs/index.html`, `docs/privacy/`, `docs/support/`, `docs/404.html` and `docs/sitemap.xml`. |
 | `tools/check.mjs` | Checks links, asset paths, third-party hosts, metadata and contrast. Plain links to `docs.github.com` are allowed (the privacy policy links GitHub's statement); anything the page would load from another host fails. |
 | `tools/make-images.swift` | Regenerates the icons and the social preview image from the app icon. |
+| `SCREENSHOTS.md` | The screenshot inventory: every placeholder on the home page, what to capture, sizes and how to swap it in. Not published. |
 
 ## The privacy and support pages
 
@@ -41,18 +42,17 @@ GitHub Pages serves what is committed.
 
 ## Changing things
 
-- **App Store button.** In `src/home.html`, replace the `<span class="soon">…</span>` with
+- **App Store button.** In `src/home.html`, replace both `<span class="pill">…Coming soon to the App Store</span>`
+  (the hero and the closing section) with
   `<a class="button" href="THE APP STORE URL">Download on the App Store</a>`, then rebuild.
-- **Screenshots.** Put PNGs in `docs/assets/screenshots/` (iPhone portrait, 1206 × 2622 so the frame
-  keeps its proportions). In `src/home.html`, replace each `<div class="placeholder" …>` with
-  `<img src="/assets/screenshots/atelier.png" width="1206" height="2622" alt="What the screenshot shows">`.
-  Keep franchise logos and art out of them (see the app repository's `Reference/APP-STORE.md`).
+- **Screenshots.** The home page shows labelled placeholders. `SCREENSHOTS.md` lists each one with
+  its file name, size and what to capture, and how to swap it for a real image.
 - **Colors and fonts** follow the app's design tokens (`Reference/SPEC.md`, Design tokens). They are
   the CSS variables at the top of `docs/assets/style.css`; `tools/check.mjs` fails if a pair drops
   below WCAG AA contrast.
-- **Fonts.** Barlow and Oxanium (SIL Open Font License 1.1, no reserved font names), subset to Latin
-  and converted to WOFF2 from the files in the app. Their license texts sit next to them in
-  `docs/assets/fonts/` and are linked from the footer.
+- **Fonts.** Text is the system font stack (San Francisco on Apple devices). Oxanium (SIL Open Font License 1.1,
+  no reserved font names) is used for one figure only; the subset WOFF2 file and its license text sit in
+  `docs/assets/fonts/` and the footer links the license. Barlow is no longer used or shipped.
 
 ## Publishing (GitHub Pages)
 

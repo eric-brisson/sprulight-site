@@ -111,6 +111,19 @@ for (const [pagePath, html] of pageHTML) {
   if (/<(iframe|form|embed|object)\b/i.test(html)) fail(`${label}: contains an iframe, form or embed`);
 }
 
+const inventory = await readFile(path.join(root, "..", "SCREENSHOTS.md"), "utf8");
+const inventoryNames = new Set([...inventory.matchAll(/^\| `([a-z0-9-]+)` \|/gm)].map((match) => match[1]));
+const pageNames = new Set();
+for (const html of pageHTML.values()) {
+  for (const match of html.matchAll(/data-asset="([^"]+)"/g)) pageNames.add(match[1]);
+}
+for (const name of pageNames) {
+  if (!inventoryNames.has(name)) fail(`screenshot ${name} is on the page but not in SCREENSHOTS.md`);
+}
+for (const name of inventoryNames) {
+  if (!pageNames.has(name)) fail(`screenshot ${name} is in SCREENSHOTS.md but not on the page`);
+}
+
 const css = await readFile(path.join(root, "assets/style.css"), "utf8");
 for (const match of css.matchAll(/url\(["']?([^"')]+)["']?\)/g)) {
   const value = match[1];
@@ -149,8 +162,12 @@ function ratio(a, b) {
 const pairs = [
   ["--text", "--bg", 4.5],
   ["--text", "--panel", 4.5],
+  ["--text-2", "--bg", 4.5],
+  ["--text-2", "--panel", 4.5],
+  ["--text-2", "--ph", 4.5],
   ["--muted", "--bg", 4.5],
   ["--muted", "--panel", 4.5],
+  ["--muted", "--ph", 4.5],
   ["--link", "--bg", 4.5],
   ["--on-accent", "--accent", 4.5],
   ["--focus", "--bg", 3],
