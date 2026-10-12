@@ -20,6 +20,7 @@
   --on-accent: #1D232A;
   --focus: #132033;
   --bezel: #11151A;
+  --shell-edge: rgb(0 0 0 / 0.14);
   --gutter: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
   --page: 76rem;
   --edge: calc((100vw - min(100vw, var(--page))) / 2 + var(--gutter));
@@ -46,6 +47,7 @@
     --link: #FFC83D;
     --focus: #FFC83D;
     --bezel: #0A0D10;
+    --shell-edge: rgb(255 255 255 / 0.14);
   }
 }
 @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
@@ -302,26 +304,21 @@ h2 {
 
 .device {
   margin: 0;
-  background: var(--bezel);
+}
+.device .shot {
   box-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.14),
-    0 1px 3px rgb(0 0 0 / 0.1),
-    0 22px 44px -22px rgb(0 0 0 / 0.38);
+    0 0 0 var(--shell) var(--bezel),
+    0 0 0 calc(var(--shell) + 1px) var(--shell-edge),
+    0 10px 24px -14px rgb(0 0 0 / 0.28);
 }
 .device--ipad {
-  padding: 0.95%;
-  border-radius: 2.7% / 3.6%;
+  --shell: 3px;
 }
 .device--ipad .shot {
   border-radius: 1.8% / 2.4%;
 }
 .device--iphone {
-  padding: 2.3%;
-  border-radius: 15.7% / 7.4%;
-  box-shadow:
-    0 0 0 1px rgb(0 0 0 / 0.18),
-    0 2px 6px rgb(0 0 0 / 0.14),
-    0 26px 48px -20px rgb(0 0 0 / 0.5);
+  --shell: 2px;
 }
 .device--iphone .shot {
   border-radius: 14% / 6.45%;
