@@ -586,12 +586,6 @@ h2 {
 .ratio-45 {
   aspect-ratio: 4 / 5;
 }
-.ratio-31 {
-  aspect-ratio: 3 / 1;
-}
-.ratio-3340 {
-  aspect-ratio: 33 / 40;
-}
 
 .jump {
   display: flex;
@@ -649,7 +643,7 @@ h2 {
   grid-template-columns: minmax(0, 3fr) minmax(0, 6fr) minmax(0, 3fr);
   grid-template-areas: "head main visual";
   column-gap: clamp(1.25rem, 2.4vw, 2rem);
-  padding-block: clamp(1.75rem, 3.5vw, 2.5rem);
+  padding-block: clamp(2rem, 3.8vw, 3rem) clamp(1.75rem, 3vw, 2.25rem);
   border-top: 1px solid var(--line);
   scroll-margin-top: 0.5rem;
 }
@@ -672,13 +666,23 @@ h2 {
   border-radius: 0.75rem;
   box-shadow: none;
 }
+.ref-intro .eyebrow,
 .ref-head .eyebrow {
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.55rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
 }
 .ref-head h2 {
-  font-size: clamp(1.25rem, 0.7vw + 1.05rem, 1.5rem);
-  line-height: 1.2;
-  letter-spacing: -0.012em;
+  font-size: clamp(1.375rem, 1vw + 1.1rem, 1.75rem);
+  font-weight: 650;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.ref-head .h2__sub {
+  font-weight: 600;
 }
 .ref-thumb {
   max-width: 15rem;
@@ -688,25 +692,36 @@ h2 {
   aspect-ratio: 4 / 3;
 }
 .ref-wide {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.5rem;
 }
 .ref-wide > .ph {
-  aspect-ratio: 3 / 1;
+  aspect-ratio: 4 / 1;
 }
 .ref-visual > .ph {
   aspect-ratio: 4 / 5;
 }
-.ref-visual--tall > .ph {
-  aspect-ratio: 33 / 40;
+.ref-visual--43 > .ph {
+  aspect-ratio: 4 / 3;
 }
 
 .items {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.35rem clamp(1.25rem, 2.4vw, 2rem);
+  gap: 1.15rem clamp(1.25rem, 2.4vw, 2rem);
   margin: 0;
   padding: 0;
   list-style: none;
+}
+.items--row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.items--row3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.items--editorial {
+  grid-template-columns: 1fr;
+  max-width: 44rem;
+  gap: 1.4rem;
 }
 .item h3,
 .item h4 {
@@ -720,38 +735,47 @@ h2 {
   max-width: 32rem;
   margin-top: 0.2rem;
   color: var(--text-2);
-  font-size: 0.9375rem;
+  font-size: 0.9rem;
   line-height: 1.5;
+}
+.items--editorial .item h3 {
+  font-size: 1.125rem;
+}
+.items--editorial .item p {
+  max-width: 44rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+.ref-lead {
+  max-width: 34rem;
+  margin: 0 0 1.5rem;
+  color: var(--text-2);
+  font-size: 0.9375rem;
 }
 .groups {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr 1.3fr;
   gap: 1.75rem clamp(1.25rem, 2.4vw, 2rem);
 }
 .groups .items {
   grid-template-columns: 1fr;
 }
+.group {
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--line);
+}
 .group > h3 {
   margin: 0 0 1rem;
-  color: var(--muted);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  font-size: 1.0625rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
 }
-.group--batch > h3 {
-  color: var(--text);
-}
-.group--batch > h3::before {
-  content: "";
-  display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
-  margin-right: 0.5rem;
-  border-radius: 50%;
-  background: var(--accent);
+.group--batch {
+  border-top: 2px solid var(--accent);
+  padding-top: calc(0.8rem - 1px);
 }
 .ref-link {
-  margin-top: 1.5rem;
+  margin-top: 1.4rem;
   font-size: 0.9375rem;
 }
 
@@ -764,9 +788,20 @@ h2 {
   padding-block: clamp(1.75rem, 3.5vw, 2.5rem) clamp(2.5rem, 5vw, 3.5rem);
   border-top: 1px solid var(--line);
 }
+.ref-close__id {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.ref-close__icon {
+  display: block;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+}
 .ref-close h2 {
-  max-width: 22rem;
-  font-size: clamp(1.25rem, 0.7vw + 1.05rem, 1.5rem);
+  max-width: 20rem;
+  font-size: clamp(1.1875rem, 0.6vw + 1rem, 1.375rem);
   line-height: 1.2;
 }
 .ref-close .status {
@@ -886,6 +921,10 @@ h2 {
   .ref-visual {
     max-width: 15rem;
   }
+  .items--row,
+  .items--row3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
   .groups {
     grid-template-columns: 1fr;
   }
@@ -912,7 +951,7 @@ h2 {
     max-width: none;
   }
   .ref-visual > .ph,
-  .ref-visual--tall > .ph {
+  .ref-visual--43 > .ph {
     aspect-ratio: 3 / 2;
     object-fit: cover;
     object-position: 50% 0;
@@ -920,7 +959,7 @@ h2 {
   .items,
   .groups .items {
     grid-template-columns: 1fr;
-    gap: 1.15rem;
+    gap: 1.05rem;
   }
   .jump {
     gap: 0 1.25rem;
@@ -986,7 +1025,7 @@ h2 {
     object-position: 50% 0;
   }
   .ref-wide > .ph {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 2 / 1;
     object-fit: cover;
     object-position: 20% 0;
   }

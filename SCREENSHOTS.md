@@ -33,14 +33,13 @@ a different crop, so treat these as a design pass: re-crop and re-size around th
 
 | Filename | Section | Device | Crop type | Size (px) / ratio | Exact app screen | What must stay visible |
 |---|---|---|---|---|---|---|
-| `features-collection-crop` | Collection (and Progress) | iPhone | Portrait crop | 1320 × 1650 (4:5) | The Collection tab, **Boxes** view, with a few box sets owned. | The **Boxes \| Factions** control, the summary and the status-bar legend, and at least two box cards with their progress bars. Crop out the status bar and the tab bar. |
-| `features-atelier-wide` | Atelier | iPad | Wide horizontal band | 2752 × 920 (3:1) | The Atelier on iPad with one box set open, ideally while a timer runs. | One unit header (faction tint, name, progress, time) and a row of tiles with rings in at least three states, including the running tile. The **Session** row at the top if it fits. |
+| `features-collection-crop` | Collection | iPhone | Landscape crop | 1320 × 990 (4:3) | The Collection tab, **Boxes** view, with a few box sets owned. | The **Boxes \| Factions** control and at least one box card with its progress bar. Crop out the status bar and the tab bar. A secondary visual: keep it small. |
+| `features-atelier-wide` | Atelier | iPad | Wide horizontal band | 2752 × 688 (4:1) | The Atelier on iPad with one box set open, ideally while a timer runs. | One unit header (faction tint, name, progress, time) and a single row of tiles with rings in at least three states, including the running tile. A slim band, not a screen. |
 | `features-tracking-session` | Tracking | iPhone | Landscape crop | 1320 × 990 (4:3) | The batch screen of a painting batch with the session running (title like "×6", stage "Painting · Running"). | The clock, the stage line, and the Pause, Stop and Finish buttons. The first member rows may show underneath. |
 | `features-paints-crop` | Paints (and Journal) | iPad | Portrait crop | 1320 × 1650 (4:5) | The Paints tab on a wide iPad with a paint open: its detail with **Used on** and **Similar paints**. | The swatches, brand and range names, and the closeness labels in the Similar paints list. The colors in the UI are the section's only color. |
-| `features-lockscreen-crop` | On iPhone | iPhone | Portrait crop | 1320 × 1600 (33:40) | The iPhone Lock Screen with the running timer's Live Activity. | The whole Live Activity card: stage badge, title, the clock and the two round buttons. Some of the Lock Screen's own clock above it for context. |
+| `features-lockscreen-crop` | On iPhone | iPhone | Landscape crop | 1320 × 990 (4:3) | The iPhone Lock Screen with the running timer's Live Activity. | The whole Live Activity card: stage badge, title, the clock and the two round buttons. No device frame and no full Lock Screen: just the card and a little context. |
 
-Journal and Progress have no image of their own: Journal reads with `features-paints-crop` and the
-home page's journal shots, and Progress with `features-collection-crop`. Add a sixth only if a real
+Journal, Progress and Privacy have no image: the text carries them. Add a sixth image only if a real
 screenshot makes a point the text can't.
 
 ## What phones crop
@@ -50,7 +49,7 @@ the page (`object-fit: cover`), not by you. Keep the important content inside th
 
 - `journey-atelier-crop` shows as 5:4 and keeps the **left** side of the strip.
 - `paints-ipad-detail` shows as 4:3 and keeps the **top** and the horizontal centre.
-- `features-atelier-wide` shows as 16:10 and keeps the **left** side of the band.
+- `features-atelier-wide` shows as 2:1 and keeps the **left** side of the band.
 - `features-collection-crop`, `features-paints-crop` and `features-lockscreen-crop` show as 3:2 on phones and keep the **top** of the image, so put the key UI in the upper part of each crop.
 
 ## The example figure
