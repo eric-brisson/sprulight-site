@@ -648,8 +648,7 @@ h2 {
   scroll-margin-top: 0.5rem;
 }
 .ref-sec--text {
-  grid-template-columns: minmax(0, 3fr) minmax(0, 9fr);
-  grid-template-areas: "head main";
+  grid-template-areas: "head main main";
 }
 .ref-head {
   grid-area: head;
@@ -688,19 +687,24 @@ h2 {
   max-width: 15rem;
   margin-top: 1.25rem;
 }
-.ref-thumb > .ph {
+.ref-thumb > .shot,
+.ref-wide > .shot,
+.ref-visual > .shot {
+  object-fit: cover;
+}
+.ref-thumb > .shot {
   aspect-ratio: 4 / 3;
 }
 .ref-wide {
   margin: 0 0 1.5rem;
 }
-.ref-wide > .ph {
+.ref-wide > .shot {
   aspect-ratio: 4 / 1;
 }
-.ref-visual > .ph {
+.ref-visual > .shot {
   aspect-ratio: 4 / 5;
 }
-.ref-visual--43 > .ph {
+.ref-visual--43 > .shot {
   aspect-ratio: 4 / 3;
 }
 
@@ -950,10 +954,9 @@ h2 {
   .ref-thumb {
     max-width: none;
   }
-  .ref-visual > .ph,
-  .ref-visual--43 > .ph {
+  .ref-visual > .shot,
+  .ref-visual--43 > .shot {
     aspect-ratio: 3 / 2;
-    object-fit: cover;
     object-position: 50% 0;
   }
   .items,
@@ -1024,9 +1027,8 @@ h2 {
     object-fit: cover;
     object-position: 50% 0;
   }
-  .ref-wide > .ph {
+  .ref-wide > .shot {
     aspect-ratio: 2 / 1;
-    object-fit: cover;
     object-position: 20% 0;
   }
 }
