@@ -8,24 +8,30 @@
 
 :root {
   color-scheme: light dark;
-  --bg: #FAF8F4;
+  --bg: #FFFFFF;
+  --band: #F5F6F7;
   --panel: #FFFFFF;
   --ph: #FFFFFF;
   --text: #132033;
   --text-2: #3A4756;
   --muted: #566779;
-  --line: #E6E0D5;
+  --line: #E4E7EA;
   --link: #132033;
   --accent: #FFC83D;
   --on-accent: #1D232A;
   --focus: #132033;
   --bezel: #11151A;
-  --shell-edge: rgb(60 45 20 / 0.16);
-  --surface-edge: rgb(60 45 20 / 0.09);
-  --shadow-sm: 0 1px 2px rgb(60 45 20 / 0.05), 0 10px 24px -16px rgb(60 45 20 / 0.2);
-  --shadow-md: 0 1px 2px rgb(60 45 20 / 0.06), 0 18px 40px -22px rgb(60 45 20 / 0.28);
-  --shadow-up: 0 -12px 32px -24px rgb(60 45 20 / 0.18);
-  --shadow-device: 0 14px 30px -18px rgb(60 45 20 / 0.3);
+  --shell-edge: rgb(16 24 40 / 0.14);
+  --surface-edge: rgb(16 24 40 / 0.08);
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 0.03), 0 8px 20px -16px rgb(16 24 40 / 0.12);
+  --shadow-md: 0 1px 2px rgb(16 24 40 / 0.04), 0 12px 30px -20px rgb(16 24 40 / 0.16);
+  --shadow-up: 0 -10px 28px -24px rgb(16 24 40 / 0.12);
+  --shadow-device: 0 12px 28px -18px rgb(16 24 40 / 0.2);
+  --surface-edge-alt: rgb(16 24 40 / 0.09);
+  --shadow-sm-alt: 0 1px 2px rgb(16 24 40 / 0.05), 0 10px 24px -16px rgb(16 24 40 / 0.2);
+  --shadow-md-alt: 0 1px 2px rgb(16 24 40 / 0.06), 0 16px 36px -20px rgb(16 24 40 / 0.26);
+  --shadow-up-alt: 0 -12px 30px -22px rgb(16 24 40 / 0.2);
+  --shadow-device-alt: 0 14px 30px -16px rgb(16 24 40 / 0.3);
   --gutter: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
   --page: 76rem;
   --edge: calc((100vw - min(100vw, var(--page))) / 2 + var(--gutter));
@@ -37,7 +43,7 @@
 @media (prefers-contrast: more) {
   :root {
     --muted: #3A4756;
-    --line: #8A8478;
+    --line: #8A96A4;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -53,11 +59,17 @@
     --focus: #FFC83D;
     --bezel: #0A0D10;
     --shell-edge: rgb(255 255 255 / 0.14);
+    --band: #222931;
     --surface-edge: rgb(255 255 255 / 0.08);
     --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -16px rgb(0 0 0 / 0.5);
     --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 40px -22px rgb(0 0 0 / 0.55);
     --shadow-up: 0 -12px 32px -24px rgb(0 0 0 / 0.45);
     --shadow-device: 0 14px 30px -18px rgb(0 0 0 / 0.5);
+    --surface-edge-alt: rgb(255 255 255 / 0.1);
+    --shadow-sm-alt: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -16px rgb(0 0 0 / 0.5);
+    --shadow-md-alt: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 40px -22px rgb(0 0 0 / 0.55);
+    --shadow-up-alt: 0 -12px 32px -24px rgb(0 0 0 / 0.45);
+    --shadow-device-alt: 0 14px 30px -18px rgb(0 0 0 / 0.5);
   }
 }
 @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
@@ -145,6 +157,31 @@ main:focus {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: clamp(1rem, 2.4vw, 2rem);
+}
+
+.band {
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+.band > :first-child {
+  margin-top: 0;
+}
+.band--alt {
+  background: var(--band);
+  --surface-edge: var(--surface-edge-alt);
+  --shadow-sm: var(--shadow-sm-alt);
+  --shadow-md: var(--shadow-md-alt);
+  --shadow-up: var(--shadow-up-alt);
+  --shadow-device: var(--shadow-device-alt);
+}
+.band--flush {
+  padding-bottom: 0;
+}
+.band--ref,
+.band--intro {
+  padding-block: 0;
+}
+.band--ref .ref-sec:first-child {
+  border-top: 0;
 }
 
 .site-header .wrap {
@@ -396,22 +433,14 @@ h2 {
 }
 .strip {
   margin: clamp(2.75rem, 6vw, 4.5rem) auto 0;
-  width: 100%;
-  max-width: 88rem;
-  border-width: 1px 0 0;
-  border-radius: 0;
+  width: min(calc(100% - 2 * var(--gutter)), 86rem);
+  border-width: 1px 1px 0;
+  border-radius: 1.25rem 1.25rem 0 0;
   box-shadow: var(--shadow-up);
 }
 .strip > .ph {
   aspect-ratio: 2752 / 1180;
 }
-@media (min-width: 88rem) {
-  .strip {
-    border-width: 1px 1px 0;
-    border-radius: 1.5rem 1.5rem 0 0;
-  }
-}
-
 .journal {
   margin-top: var(--section);
   align-items: center;
@@ -871,7 +900,7 @@ h2 {
 
 .site-footer {
   padding-block: 2rem 3rem;
-  border-top: 1px solid var(--line);
+  background: var(--band);
 }
 .site-footer p {
   max-width: 40rem;
@@ -908,10 +937,10 @@ h2 {
     padding-top: 0;
   }
   .progress__media {
-    margin-inline: calc(-1 * var(--gutter));
+    margin-inline: 0;
     margin-top: 2.5rem;
-    border-radius: 0;
-    border-width: 1px 0;
+    border-radius: 1.25rem;
+    border-width: 1px;
   }
   .progress__text {
     grid-row: 1;
@@ -1024,10 +1053,7 @@ h2 {
     width: 56%;
   }
   .paints__shot {
-    width: calc(100% + 2 * var(--gutter));
-    margin-inline: calc(-1 * var(--gutter));
-    border-radius: 0;
-    border-width: 1px 0;
+    width: 100%;
   }
   .strip > .shot {
     aspect-ratio: 5 / 4;

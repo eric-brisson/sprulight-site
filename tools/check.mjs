@@ -107,6 +107,11 @@ for (const [pagePath, html] of pageHTML) {
   for (const image of html.matchAll(/<img\b[^>]*>/g)) {
     if (!/\balt="/.test(image[0])) fail(`${label}: image without alt ${image[0]}`);
   }
+  for (const tag of ["div", "section", "ul", "nav", "figure", "header", "footer", "main"]) {
+    const opened = (html.match(new RegExp(`<${tag}[\\s>]`, "g")) ?? []).length;
+    const closed = (html.match(new RegExp(`</${tag}>`, "g")) ?? []).length;
+    if (opened !== closed) fail(`${label}: ${opened} <${tag}> opened but ${closed} closed`);
+  }
   if (/<script\b/i.test(html)) fail(`${label}: contains a script`);
   if (/<(iframe|form|embed|object)\b/i.test(html)) fail(`${label}: contains an iframe, form or embed`);
 }
@@ -168,6 +173,10 @@ const pairs = [
   ["--muted", "--bg", 4.5],
   ["--muted", "--panel", 4.5],
   ["--muted", "--ph", 4.5],
+  ["--text", "--band", 4.5],
+  ["--text-2", "--band", 4.5],
+  ["--muted", "--band", 4.5],
+  ["--link", "--band", 4.5],
   ["--link", "--bg", 4.5],
   ["--on-accent", "--accent", 4.5],
   ["--focus", "--bg", 3],
