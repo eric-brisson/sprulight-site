@@ -8,19 +8,24 @@
 
 :root {
   color-scheme: light dark;
-  --bg: #F2F2F7;
+  --bg: #FAF8F4;
   --panel: #FFFFFF;
-  --ph: #E5E8EE;
+  --ph: #FFFFFF;
   --text: #132033;
   --text-2: #3A4756;
   --muted: #566779;
-  --line: #CFD8E3;
+  --line: #E6E0D5;
   --link: #132033;
   --accent: #FFC83D;
   --on-accent: #1D232A;
   --focus: #132033;
   --bezel: #11151A;
-  --shell-edge: rgb(0 0 0 / 0.14);
+  --shell-edge: rgb(60 45 20 / 0.16);
+  --surface-edge: rgb(60 45 20 / 0.09);
+  --shadow-sm: 0 1px 2px rgb(60 45 20 / 0.05), 0 10px 24px -16px rgb(60 45 20 / 0.2);
+  --shadow-md: 0 1px 2px rgb(60 45 20 / 0.06), 0 18px 40px -22px rgb(60 45 20 / 0.28);
+  --shadow-up: 0 -12px 32px -24px rgb(60 45 20 / 0.18);
+  --shadow-device: 0 14px 30px -18px rgb(60 45 20 / 0.3);
   --gutter: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
   --page: 76rem;
   --edge: calc((100vw - min(100vw, var(--page))) / 2 + var(--gutter));
@@ -32,7 +37,7 @@
 @media (prefers-contrast: more) {
   :root {
     --muted: #3A4756;
-    --line: #8A96A4;
+    --line: #8A8478;
   }
 }
 @media (prefers-color-scheme: dark) {
@@ -48,6 +53,11 @@
     --focus: #FFC83D;
     --bezel: #0A0D10;
     --shell-edge: rgb(255 255 255 / 0.14);
+    --surface-edge: rgb(255 255 255 / 0.08);
+    --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 24px -16px rgb(0 0 0 / 0.5);
+    --shadow-md: 0 1px 2px rgb(0 0 0 / 0.3), 0 18px 40px -22px rgb(0 0 0 / 0.55);
+    --shadow-up: 0 -12px 32px -24px rgb(0 0 0 / 0.45);
+    --shadow-device: 0 14px 30px -18px rgb(0 0 0 / 0.5);
   }
 }
 @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
@@ -309,7 +319,7 @@ h2 {
   box-shadow:
     0 0 0 var(--shell) var(--bezel),
     0 0 0 calc(var(--shell) + 1px) var(--shell-edge),
-    0 10px 24px -14px rgb(0 0 0 / 0.28);
+    var(--shadow-device);
 }
 .device--ipad {
   --shell: 3px;
@@ -365,9 +375,10 @@ h2 {
 .crop {
   margin: 0;
   overflow: hidden;
-  border: 1px solid var(--line);
+  border: 1px solid var(--surface-edge);
   border-radius: 1.25rem;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05), 0 20px 40px -24px rgb(0 0 0 / 0.3);
+  background: var(--panel);
+  box-shadow: var(--shadow-md);
 }
 .crop > .shot {
   border-radius: 0;
@@ -389,7 +400,7 @@ h2 {
   max-width: 88rem;
   border-width: 1px 0 0;
   border-radius: 0;
-  box-shadow: none;
+  box-shadow: var(--shadow-up);
 }
 .strip > .ph {
   aspect-ratio: 2752 / 1180;
@@ -437,9 +448,10 @@ h2 {
 }
 .photo {
   border-radius: 0.75rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--surface-edge);
   overflow: hidden;
-  box-shadow: 0 20px 40px -24px rgb(0 0 0 / 0.3);
+  background: var(--panel);
+  box-shadow: var(--shadow-md);
 }
 .photo > .ph {
   aspect-ratio: 4 / 5;
@@ -663,7 +675,7 @@ h2 {
 }
 .ref-sec .crop {
   border-radius: 0.75rem;
-  box-shadow: none;
+  box-shadow: var(--shadow-sm);
 }
 .ref-intro .eyebrow,
 .ref-head .eyebrow {
