@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1100" role="img" aria-label="Placeholder: the Collection list with several box sets">
+<rect width="800" height="1100" fill="#F5F6F7"/>
+<text x="48" y="92" font-family="-apple-system, system-ui, sans-serif" font-size="44" font-weight="700" fill="#132033">Collection</text>
+<rect x="32" y="150" width="736" height="150" rx="24" fill="#FFFFFF" stroke="#E4E7EA" stroke-width="2"/>
+<rect x="60" y="178" width="94" height="94" rx="16" fill="#E4E7EA"/>
+<text x="182" y="216" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="600" fill="#132033">Box set A</text>
+<rect x="182" y="242" width="520" height="14" rx="7" fill="#E4E7EA"/>
+<rect x="182" y="242" width="416" height="14" rx="7" fill="#566779"/>
+<rect x="32" y="324" width="736" height="150" rx="24" fill="#FFFFFF" stroke="#E4E7EA" stroke-width="2"/>
+<rect x="60" y="352" width="94" height="94" rx="16" fill="#E4E7EA"/>
+<text x="182" y="390" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="600" fill="#132033">Box set B</text>
+<rect x="182" y="416" width="520" height="14" rx="7" fill="#E4E7EA"/>
+<rect x="182" y="416" width="234" height="14" rx="7" fill="#566779"/>
+<rect x="32" y="498" width="736" height="150" rx="24" fill="#FFFFFF" stroke="#E4E7EA" stroke-width="2"/>
+<rect x="60" y="526" width="94" height="94" rx="16" fill="#E4E7EA"/>
+<text x="182" y="564" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="600" fill="#132033">Box set C</text>
+<rect x="182" y="590" width="520" height="14" rx="7" fill="#E4E7EA"/>
+<rect x="182" y="590" width="78" height="14" rx="7" fill="#566779"/>
+<rect x="32" y="672" width="736" height="150" rx="24" fill="#FFFFFF" stroke="#E4E7EA" stroke-width="2"/>
+<rect x="60" y="700" width="94" height="94" rx="16" fill="#E4E7EA"/>
+<text x="182" y="738" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="600" fill="#132033">Box set D</text>
+<rect x="182" y="764" width="520" height="14" rx="7" fill="#E4E7EA"/>
+<rect x="32" y="846" width="736" height="150" rx="24" fill="#FFFFFF" stroke="#E4E7EA" stroke-width="2"/>
+<rect x="60" y="874" width="94" height="94" rx="16" fill="#E4E7EA"/>
+<text x="182" y="912" font-family="-apple-system, system-ui, sans-serif" font-size="32" font-weight="600" fill="#132033">Box set E</text>
+<rect x="182" y="938" width="520" height="14" rx="7" fill="#E4E7EA"/>
+<rect x="182" y="938" width="312" height="14" rx="7" fill="#566779"/>
+<text x="400.0" y="1072" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="20" fill="#566779">placeholder · collection-list-crop · iPhone crop · 8:11</text>
+</svg>

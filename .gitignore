@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+# The guide (VitePress, see guide/) is built by CI into docs/guide/ and never committed.
+guide/.vitepress/cache/
+docs/guide/

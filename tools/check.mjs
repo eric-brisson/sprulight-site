@@ -29,6 +29,11 @@ function localFile(url, fromPage) {
   return pathname.endsWith("/") ? path.join(file, "index.html") : file;
 }
 
+async function guideSourceExists(target) {
+  const relative = path.relative(guideOut, target).replace(/(^|\/)index\.html$/, "$1index").replace(/\.html$/, "");
+  return (await exists(path.join(guideSrc, `${relative}.md`))) || (await exists(path.join(guideSrc, relative, "index.md")));
+}
+
 function attributeValues(html) {
   const found = [];
   for (const match of html.matchAll(/<(\w+)\b([^>]*)>/g)) {
@@ -40,7 +45,10 @@ function attributeValues(html) {
   return found;
 }
 
-const files = await walk(root);
+// docs/guide/ is the VitePress build (CI output, gitignored). It has its own rules below.
+const guideOut = path.join(root, "guide");
+const guideSrc = path.join(root, "..", "guide");
+const files = (await walk(root)).filter((file) => !file.startsWith(guideOut + path.sep));
 const pages = files.filter((file) => file.endsWith(".html"));
 const ids = new Map();
 const pageHTML = new Map();
@@ -82,6 +90,11 @@ for (const [pagePath, html] of pageHTML) {
       continue;
     }
     const target = localFile(value, pagePath);
+    if (target === guideOut || target.startsWith(guideOut + path.sep)) {
+      // Not built locally: check the link against the guide's Markdown source instead.
+      if (!(await guideSourceExists(target))) fail(`${label}: <${tag} ${name}="${value}"> has no page in guide/`);
+      continue;
+    }
     if (!(await exists(target))) {
       fail(`${label}: <${tag} ${name}="${value}"> does not resolve to a file`);
     } else if (fragment && target.endsWith(".html")) {
@@ -199,6 +212,29 @@ for (const dark of [false, true]) {
       if (value < minimum) fail(`contrast ${value.toFixed(2)}:1 below ${minimum}:1 for ${name}`);
     }
   }
+}
+
+// The guide may use JavaScript (VitePress), but it still must not load anything from another host.
+if (await exists(guideOut)) {
+  const guidePages = (await walk(guideOut)).filter((file) => file.endsWith(".html"));
+  for (const page of guidePages) {
+    const html = await readFile(page, "utf8");
+    const label = "/guide/" + path.relative(guideOut, page);
+    for (const { tag, name, value } of attributeValues(html)) {
+      if (!/^(https?:)?\/\//.test(value)) continue;
+      if (value.startsWith(origin)) continue;
+      if (tag === "a" && name === "href") continue;
+      if (name === "content" && tag === "meta") continue;
+      thirdPartyHosts.add(new URL(value, origin).host);
+      fail(`${label}: external URL ${value} in <${tag} ${name}>`);
+    }
+    for (const script of html.matchAll(/<script\b[^>]*>([^<]*)</g)) {
+      if (/https?:\/\/(?!sprulight\.com)/.test(script[1])) fail(`${label}: inline script mentions an external URL`);
+    }
+  }
+  console.log(`Guide: ${guidePages.length} pages checked (scripts allowed, no third-party loads)`);
+} else {
+  console.log("Guide: docs/guide/ not built here, skipped (CI builds it)");
 }
 
 console.log(`${pages.length} pages, ${files.length} files checked`);

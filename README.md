@@ -1,7 +1,9 @@
 # sprulight-site
 
 The website for the SpruLight app, served at https://sprulight.com by GitHub Pages.
-Plain HTML and CSS: no JavaScript, no analytics, no cookies, no third-party requests.
+The marketing pages are plain HTML and CSS: no JavaScript, no analytics, no cookies, no third-party requests.
+The user guide at `/guide/` is a separate VitePress project (it does ship JavaScript, for navigation and
+search) that keeps the same promises about analytics, cookies and third-party requests.
 
 ## Layout
 
@@ -13,6 +15,8 @@ Plain HTML and CSS: no JavaScript, no analytics, no cookies, no third-party requ
 | `build.mjs` | Builds `docs/index.html`, `docs/features/`, `docs/privacy/`, `docs/support/`, `docs/404.html` and `docs/sitemap.xml`. A new page is one entry in its `pages` list. |
 | `tools/check.mjs` | Checks links, asset paths, third-party hosts, metadata and contrast. Plain links to `docs.github.com` are allowed (the privacy policy links GitHub's statement); anything the page would load from another host fails. |
 | `tools/make-images.swift` | Regenerates the icons and the social preview image from the app icon. |
+| `guide/` | The user guide, served at `/guide/`. A VitePress project with its own `package.json`: Markdown pages, the sidebar in `guide/.vitepress/config.mts`, the theme in `guide/.vitepress/theme/custom.css`. It builds into `docs/guide/`, which is gitignored and never committed. |
+| `.github/workflows/pages.yml` | Builds the guide, runs the check and publishes `docs/` (marketing pages plus `docs/guide/`) to GitHub Pages. |
 | `SCREENSHOTS.md` | The screenshot inventory: every placeholder on the home page, what to capture, sizes and how to swap it in. Not published. |
 
 ## The privacy and support pages
@@ -37,8 +41,28 @@ node tools/check.mjs                  # validate the result
 python3 -m http.server 8000 -d docs   # preview at http://localhost:8000
 ```
 
-Run the build and the check before every commit, and commit the generated `docs/` files too:
-GitHub Pages serves what is committed.
+Run the build and the check before every commit, and commit the generated `docs/` files too
+(except `docs/guide/`, which CI builds).
+
+## The guide (`/guide/`)
+
+Needs Node 20 or later; the guide's packages install inside `guide/` only.
+
+```sh
+cd guide
+npm install
+npm run dev      # http://localhost:5173/guide/
+npm run build    # writes docs/guide/ (so tools/check.mjs checks it too)
+```
+
+- A new page is a Markdown file in `guide/` plus an entry in the `sidebar` in `guide/.vitepress/config.mts`.
+  Links between pages are written without the base (`/assembly/start-a-session`); VitePress adds `/guide`.
+- Screenshots go in `guide/public/screenshots/` and are referenced as `/screenshots/NAME` (see the
+  figure in `guide/getting-started/add-your-first-box.md`).
+- `node build.mjs` adds every guide page to `docs/sitemap.xml`, so rebuild the marketing pages after adding one.
+- `tools/check.mjs` checks links from the marketing pages into `/guide/` against the guide's Markdown. If
+  `docs/guide/` has been built, it also fails on anything the guide loads from another host. Scripts are allowed there.
+- `python3 -m http.server` cannot preview the guide's extensionless URLs; use `npm run dev` or `npm run preview`.
 
 ## Changing things
 
@@ -56,7 +80,8 @@ GitHub Pages serves what is committed.
 
 ## Publishing (GitHub Pages)
 
-1. Repository settings → Pages: deploy from the `main` branch, folder `/docs`.
+1. Repository settings → Pages → Source: **GitHub Actions**. (The workflow in `.github/workflows/pages.yml`
+   publishes `docs/` and adds the guide. With "Deploy from a branch" the guide would be missing.)
 2. Custom domain `sprulight.com` (the `docs/CNAME` file holds it). Tick **Enforce HTTPS** once the
    certificate is ready.
 3. DNS at the registrar:

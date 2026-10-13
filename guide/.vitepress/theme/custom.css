@@ -1,0 +1,100 @@
+/* Neutral palette taken from the marketing site (sprulight.com).
+   Amber (#FFC83D) is a marker colour only: it fails contrast as text on white,
+   so links stay navy and amber appears as underline / active bars. */
+:root {
+  --vp-font-family-base: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, sans-serif;
+  --vp-font-family-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+
+  --vp-c-bg: #ffffff;
+  --vp-c-bg-alt: #f5f6f7;
+  --vp-c-bg-soft: #f5f6f7;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-divider: #e4e7ea;
+  --vp-c-gutter: #e4e7ea;
+  --vp-c-text-1: #132033;
+  --vp-c-text-2: #3a4756;
+  --vp-c-text-3: #566779;
+
+  --vp-c-brand-1: #132033;
+  --vp-c-brand-2: #132033;
+  --vp-c-brand-3: #132033;
+  --vp-c-brand-soft: rgb(255 200 61 / 0.22);
+  --sl-amber: #ffc83d;
+}
+
+.dark {
+  --vp-c-bg: #0f1620;
+  --vp-c-bg-alt: #151d29;
+  --vp-c-bg-soft: #151d29;
+  --vp-c-bg-elv: #151d29;
+  --vp-c-divider: #263243;
+  --vp-c-gutter: #263243;
+  --vp-c-text-1: #eef1f4;
+  --vp-c-text-2: #c4ccd5;
+  --vp-c-text-3: #9aa7b5;
+  --vp-c-brand-1: #ffc83d;
+  --vp-c-brand-2: #ffc83d;
+  --vp-c-brand-3: #ffc83d;
+  --vp-c-brand-soft: rgb(255 200 61 / 0.16);
+}
+
+/* Light gray sidebar. Every row reserves a 12px gutter on the left: a 2px bar
+   (amber when active) plus 10px of space, so the bar never overlaps the text
+   and active and inactive labels stay aligned. */
+.VPSidebar { background: var(--vp-c-bg-alt); }
+.VPSidebarItem .indicator { display: none; }
+.VPSidebarItem > .item > .link { position: relative; padding-left: 12px; }
+.VPSidebarItem > .item > .link::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
+  width: 2px;
+  border-radius: 2px;
+  background: transparent;
+}
+.VPSidebarItem.is-active > .item > .link::before { background: var(--sl-amber); }
+.VPSidebarItem.is-active > .item > .link > .text {
+  color: var(--vp-c-text-1);
+  font-weight: 600;
+}
+/* Section titles (no link) share the same text edge as the rows below them */
+.VPSidebarItem.level-0 > .item > .text { padding-left: 12px; }
+
+/* Links in articles: navy with an amber underline */
+.vp-doc a {
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--sl-amber);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.vp-doc h2 { border-top: 0; margin-top: 40px; padding-top: 0; }
+
+/* Table of contents: amber marker on the current heading */
+.VPDocAsideOutline .outline-marker { background: var(--sl-amber); width: 3px; }
+.VPDocAsideOutline .outline-link.active { color: var(--vp-c-text-1); font-weight: 600; }
+
+/* Screenshots */
+.vp-doc img {
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+/* No motion */
+*, *::before, *::after { transition: none !important; animation: none !important; }
+
+/* Figures: portrait phone crops stay narrow, wide iPad crops fill the column */
+.vp-doc figure.shot { margin: 24px 0; }
+.vp-doc figure.shot p { margin: 0; }
+.vp-doc figure.shot img { display: block; height: auto; }
+.vp-doc figure.shot-portrait img { width: 100%; max-width: 340px; }
+.vp-doc figure.shot-wide img { width: 100%; }
+.vp-doc figure.shot figcaption {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--vp-c-text-3);
+}

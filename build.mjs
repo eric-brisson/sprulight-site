@@ -1,4 +1,4 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -173,7 +173,16 @@ for (const page of pages) {
   console.log(`wrote docs/${page.out}`);
 }
 
-const urls = pages.filter((page) => !page.noindex).map((page) => origin + page.path);
+// The guide is a separate VitePress project (guide/) built by CI into docs/guide/.
+// Its pages come from the Markdown files, so they can be listed here without a build.
+const guideFiles = (await readdir(path.join(root, "guide"), { recursive: true }))
+  .filter((file) => file.endsWith(".md") && !/(^|\/)(node_modules|\.vitepress)\//.test(file))
+  .sort();
+const guideUrls = guideFiles.map(
+  (file) => `${origin}/guide/${file.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, "")}`,
+);
+
+const urls = [...pages.filter((page) => !page.noindex).map((page) => origin + page.path), ...guideUrls];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((url) => `  <url><loc>${url}</loc></url>`).join("\n")}
