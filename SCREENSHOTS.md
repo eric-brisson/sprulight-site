@@ -5,10 +5,11 @@ screenshot from the simulator or a device, put it in `docs/assets/screenshots/` 
 and swap the placeholder `<div>` in `src/home.html` or `src/features.html` for an `<img>` (see "Swapping a placeholder").
 `node tools/check.mjs` fails if the page and this table disagree.
 
-**Status.** 14 of the 15 images are real screenshots (13 taken on 2026-10-19 from simulators with mock data;
-`features-lockscreen-crop` from a real iPhone, cropped to 923 × 692 from a 923-pixel-wide screenshot, on a plain
-wallpaper). One is still a placeholder: `journal-photo-1` (needs a real photograph of a half-painted model).
-A simulator's Lock Screen shows the Live Activity clock as "24:--", so that shot has to come from a real device.
+**Status.** All 15 images are in. 13 are screenshots taken on 2026-10-19 from simulators with mock data;
+`features-lockscreen-crop` is from a real iPhone, cropped to 923 × 692 from a 923-pixel-wide screenshot, on a plain
+wallpaper (a simulator's Lock Screen shows the Live Activity clock as "24:--", so that shot has to come from a real
+device). `journal-photo-1` is the owner's own photo of a grey-primed miniature (1086 × 1357, 4:5). It is a real photo:
+an AI-coloured version was deliberately not used, because the slot is for a real photograph.
 
 Export screenshots **without** a device frame: the site draws the thin bezel itself for the
 "full-device" ones. "Cropped UI" means the file is cut from a screenshot and shown with no
