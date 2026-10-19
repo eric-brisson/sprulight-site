@@ -1058,7 +1058,7 @@ h2 {
   .strip > .shot {
     aspect-ratio: 5 / 4;
     object-fit: cover;
-    object-position: 20% 0;
+    object-position: 0 0;
   }
   .paints__shot > .shot {
     aspect-ratio: 4 / 3;
@@ -1067,7 +1067,7 @@ h2 {
   }
   .ref-wide > .shot {
     aspect-ratio: 2 / 1;
-    object-position: 20% 0;
+    object-position: 0 0;
   }
 }
 
