@@ -902,6 +902,18 @@ h2 {
   padding-block: 2rem 3rem;
   background: var(--band);
 }
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
+}
 .site-footer p {
   max-width: 40rem;
   color: var(--muted);

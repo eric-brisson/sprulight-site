@@ -9,6 +9,16 @@ const appRepo =
   process.env.SPRULIGHT_APP_REPO ??
   path.join(os.homedir(), "Projects/github/supply-depot/SupplyDepot");
 
+// Release day: fill in both values from App Store Connect and rebuild. Every "Coming soon" pill
+// becomes a download button and the Smart App Banner turns on. Leave them empty until then.
+const appStore = {
+  id: "", // the numeric Apple ID, for example "6745000000"
+  url: "", // for example "https://apps.apple.com/app/id6745000000"
+};
+
+const comingSoon = `<span class="pill"><span class="dot" aria-hidden="true"></span>Coming soon to the App Store</span>`;
+const downloadButton = `<a class="button" href="${appStore.url}">Download on the App Store</a>`;
+
 const pages = [
   {
     out: "index.html",
@@ -154,6 +164,8 @@ for (const page of pages) {
     content = (await readFile(path.join(root, page.source.html), "utf8")).trimEnd();
   }
 
+  content = content.replaceAll("{{appStore}}", appStore.url ? downloadButton : comingSoon);
+
   const url = origin + page.path;
   const html = fill(layout, {
     title: escapeHTML(page.title),
@@ -161,6 +173,7 @@ for (const page of pages) {
     url,
     canonicalTag: page.noindex ? "" : `<link rel="canonical" href="${url}">\n`,
     robotsTag: page.noindex ? `<meta name="robots" content="noindex">\n` : "",
+    appBannerTag: appStore.id ? `<meta name="apple-itunes-app" content="app-id=${appStore.id}">\n` : "",
     navFeatures: page.nav === "navFeatures" ? ' aria-current="page"' : "",
     navSupport: page.nav === "navSupport" ? ' aria-current="page"' : "",
     navPrivacy: page.nav === "navPrivacy" ? ' aria-current="page"' : "",

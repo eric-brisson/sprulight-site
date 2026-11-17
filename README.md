@@ -13,7 +13,7 @@ search) that keeps the same promises about analytics, cookies and third-party re
 | `src/layout.html` | The shared `<head>`, header and footer. |
 | `src/home.html`, `src/features.html`, `src/not-found.html` | The home page, the guided Features walkthrough and the 404 page content. |
 | `build.mjs` | Builds `docs/index.html`, `docs/features/`, `docs/privacy/`, `docs/support/`, `docs/404.html` and `docs/sitemap.xml`. A new page is one entry in its `pages` list. |
-| `tools/check.mjs` | Checks links, asset paths, third-party hosts, metadata and contrast. Plain links to `docs.github.com` are allowed (the privacy policy links GitHub's statement); anything the page would load from another host fails. |
+| `tools/check.mjs` | Checks links, asset paths, third-party hosts, metadata and contrast. Plain links to `docs.github.com` (the privacy policy links GitHub's statement) and `apps.apple.com` (the download button) are allowed; anything the page would load from another host fails. |
 | `tools/make-images.swift` | Regenerates the icons and the social preview image from the app icon. |
 | `guide/` | The user guide, served at `/guide/`. A VitePress project with its own `package.json`: Markdown pages, the sidebar in `guide/.vitepress/config.mts`, the theme in `guide/.vitepress/theme/custom.css`. It builds into `docs/guide/`, which is gitignored and never committed. |
 | `.github/workflows/pages.yml` | Builds the guide, runs the check and publishes `docs/` (marketing pages plus `docs/guide/`) to GitHub Pages. |
@@ -66,9 +66,11 @@ npm run build    # writes docs/guide/ (so tools/check.mjs checks it too)
 
 ## Changing things
 
-- **App Store button.** In `src/home.html`, replace both `<span class="pill">…Coming soon to the App Store</span>`
-  (the hero and the closing section) with
-  `<a class="button" href="THE APP STORE URL">Download on the App Store</a>`, then rebuild.
+- **App Store button and Smart App Banner.** On release day, fill in `appStore.id` and `appStore.url` at the top of
+  `build.mjs` and rebuild. All three "Coming soon to the App Store" pills (`{{appStore}}` in `src/home.html` and
+  `src/features.html`) become a "Download on the App Store" button, and every page gets
+  `<meta name="apple-itunes-app">`. To use Apple's official badge instead of the text button, change `downloadButton`
+  in `build.mjs` (Apple's marketing resources have the badge artwork and usage rules).
 - **Screenshots.** The home page shows labelled placeholders. `SCREENSHOTS.md` lists each one with
   its file name, size and what to capture, and how to swap it for a real image.
 - **Colors and fonts** follow the app's design tokens (`Reference/SPEC.md`, Design tokens). They are

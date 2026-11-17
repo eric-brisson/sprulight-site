@@ -25,7 +25,7 @@ export default defineConfig({
     return [
       ["link", { rel: "canonical", href: url }],
       ["meta", { property: "og:url", content: url }],
-      ["meta", { property: "og:title", content: `${pageData.title} | SpruLight Docs` }],
+      ["meta", { property: "og:title", content: pageData.title === "SpruLight Docs" ? pageData.title : `${pageData.title} | SpruLight Docs` }],
       ["meta", { property: "og:description", content: pageData.description || "How to use SpruLight, the miniature painting tracker for iPad and iPhone." }],
     ];
   },

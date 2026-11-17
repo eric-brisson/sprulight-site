@@ -62,7 +62,7 @@ for (const page of pages) {
 
 const thirdPartyHosts = new Set();
 const outboundLinks = new Set();
-const allowedLinkHosts = new Set(["docs.github.com"]);
+const allowedLinkHosts = new Set(["docs.github.com", "apps.apple.com"]);
 
 for (const [pagePath, html] of pageHTML) {
   const label = `${pagePath || "/"}`;
