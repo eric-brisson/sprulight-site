@@ -1098,6 +1098,10 @@ h2 {
     width: calc(100% + 1.3rem);
     margin-inline: -0.65rem;
   }
+  /* The taller two-row header already provides the space above the first line. */
+  .hero {
+    padding-top: 1rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
