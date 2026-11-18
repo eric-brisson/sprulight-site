@@ -1083,15 +1083,20 @@ h2 {
   }
 }
 
-@media (max-width: 30rem) {
+/* Phones: four links no longer fit beside the wordmark, so the nav drops to its own row.
+   Its ends line up with the page gutters. */
+@media (max-width: 34rem) {
   .site-header .wrap {
-    gap: 0.5rem;
+    flex-wrap: wrap;
+    min-height: 0;
+    gap: 0;
+    padding-block: 0.5rem 0.25rem;
   }
   .site-header nav {
+    justify-content: space-between;
     gap: 0;
-  }
-  .site-header nav a {
-    padding-inline: 0.5rem;
+    width: calc(100% + 1.3rem);
+    margin-inline: -0.65rem;
   }
 }
 
