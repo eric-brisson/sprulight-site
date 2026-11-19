@@ -12,7 +12,7 @@ SpruLight tracks your miniatures collection and the time you spend assembling an
 
 ## Private by design
 
-Your collection, journal and photos stay on your device. There is no account, no ads and no usage tracking, and SpruLight works fully offline.
+Your collection, journal and photos stay on your device and, when iCloud is on for SpruLight, in your own private iCloud storage, which keeps your iPad and iPhone in sync. The developer can't see it. There is no account to create, no server, no ads and no usage tracking, and SpruLight works offline.
 
 ::: tip Next step
 [Add your first box](/getting-started/add-your-first-box) to see your collection take shape.

@@ -33,7 +33,7 @@ const pages = [
     path: "/features/",
     title: "Features | SpruLight",
     description:
-      "How SpruLight fits into the miniature hobby: your collection, the Atelier, timed assembly and painting, a journal, paints and progress, on iPad and iPhone.",
+      "How SpruLight fits into the miniature hobby: your collection, the Atelier, timed assembly and painting, a journal, paints and progress, in sync on iPad and iPhone.",
     source: { html: "src/features.html" },
     nav: "navFeatures",
   },
@@ -42,7 +42,7 @@ const pages = [
     path: "/privacy/",
     title: "Privacy policy | SpruLight",
     description:
-      "SpruLight doesn't collect or transmit your personal data to the developer. Everything you enter is stored locally on your device.",
+      "SpruLight doesn't collect or transmit your personal data to the developer. What you enter stays on your device and, with iCloud on, in your own private iCloud storage.",
     source: { markdown: "Reference/privacy-policy.md" },
     nav: "navPrivacy",
   },
